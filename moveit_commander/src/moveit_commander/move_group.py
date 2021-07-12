@@ -600,6 +600,9 @@ class MoveGroupCommander(object):
         elif type(joints) is Pose:
             self.set_pose_target(joints)
 
+        elif type(joints) is list:
+            self.set_joint_value_target(joints)
+
         elif joints is not None:
             try:
                 self.set_joint_value_target(self.get_remembered_joint_values()[joints])
@@ -620,10 +623,13 @@ class MoveGroupCommander(object):
         elif type(joints) is Pose:
             self.set_pose_target(joints)
 
+        elif type(joints) is list:
+            self.set_joint_value_target(joints)
+
         elif joints is not None:
             try:
                 self.set_joint_value_target(self.get_remembered_joint_values()[joints])
-            except MoveItCommanderException:
+            except TypeError:
                 self.set_joint_value_target(joints)
 
         (error_code_msg, trajectory_msg, planning_time) = self._g.plan()
