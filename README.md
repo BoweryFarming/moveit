@@ -1,3 +1,15 @@
+Traptic MoveIt deployment instructions:
+Once the changes are made to the source files, to obtain a .deb package that can be installed in the traptic-ros-image Dockerfile do the following:
+ - In your local computer do ``sudo apt-get install python-bloom
+sudo apt-get install fakeroot
+sudo apt-get install dpkg-dev debhelper``
+ - cd  to the package that needs deployment (eg: cd moveit/moveit_commander)
+ - check the dependencies ``rosdep update; rosdep check --from-paths . --ignore-src --rosdistro="$(rosversion -d)"``
+ - Generate the configuration files using: ``bloom-generate rosdebian --ros-distro $(rosversion -d)``
+ - Generate .deb file with -O2 optimizations ``fakeroot debian/rules binary``
+ - If you need to regenerate the .deb file, delete the folders generated in the last two steps and repeat the last two steps
+ - Reference: ``https://github.com/carlosmccosta/ros_development_tools/blob/master/catkin/create_deb_files_for_ros_packages.md``
+
 <img src="https://moveit.ros.org/assets/logo/moveit_logo-black.png" alt="MoveIt Logo" width="200"/>
 
 **The MoveIt Motion Planning Framework**
