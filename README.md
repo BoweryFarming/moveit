@@ -1,8 +1,6 @@
 Traptic MoveIt deployment instructions:
 Once the changes are made to the source files, to obtain a .deb package that can be installed in the traptic-ros-image Dockerfile do the following:
- - In your local computer do ``sudo apt-get install python-bloom
-sudo apt-get install fakeroot
-sudo apt-get install dpkg-dev debhelper``
+ - In your local computer do ``sudo apt-get install python3-bloom; sudo apt-get install fakeroot; sudo apt-get install dpkg-dev debhelper``
  - cd  to the package that needs deployment (eg: cd moveit/moveit_commander)
  - check the dependencies ``rosdep update; rosdep check --from-paths . --ignore-src --rosdistro="$(rosversion -d)"``
  - Generate the configuration files using: ``bloom-generate rosdebian --ros-distro $(rosversion -d)``
